@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vit-devops-deployment
+  labels:
+    app: vit-devops-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vit-devops-app
+  template:
+    metadata:
+      labels:
+        app: vit-devops-app
+    spec:
+      containers:
+        - name: vit-devops-container
+          image: gokulprasathg/vit-devops-app:57fe6840d548437ee79332ce8693d6a900ccbb21
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 5
