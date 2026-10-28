@@ -10,7 +10,7 @@ def client():
 def test_home_route(client):
     response = client.get('/')
     assert response.status_code == 200
-    assert b"Hello VIT! DevOps Exam - Kubernetes CI/CD Working" in response.data
+    assert b"Hello VIT! DevOps Exam - V2 Live Update Successful" in response.data
 
 def test_health_route(client):
     response = client.get('/health')
